@@ -100,12 +100,27 @@ namespace ScreenshotEx
         {
             if (_settings.OpenApp == 0)
             {
-                Process.Start(new ProcessStartInfo
+                if (File.Exists(@"C:\Windows\System32\mspaint.exe"))
                 {
-                    FileName = @"C:\Windows\System32\mspaint.exe",
-                    Arguments = $"\"{_saveFilePath}\"",
-                    UseShellExecute = true
-                });
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = @"C:\Windows\System32\mspaint.exe",
+                        Arguments = $"\"{_saveFilePath}\"",
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    if (!File.Exists("C://WINDOWS//system32//shimgvw.dll"))
+                        return;
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = _saveFilePath,
+                        Arguments = $"rundl132.exe C://WINDOWS//system32//shimgvw.dll,ImageView_Fullscreen",
+                        UseShellExecute = true
+                    });
+                }
+              
             }
 
             _previewWindow.SetHide();
