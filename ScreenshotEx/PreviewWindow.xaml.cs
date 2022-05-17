@@ -7,6 +7,7 @@ namespace ScreenshotEx
 {
     public partial class PreviewWindow : Window
     {
+        const int DelaySeconds = 5;
         bool _isShow;
         int _delaySeconds;
         public Action OpenImageAction;
@@ -20,19 +21,17 @@ namespace ScreenshotEx
         {
             GC.Collect();
 
-            int height = (int)((FrameworkElement)this.Content).ActualHeight;
-
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.UriSource = new Uri(path);
+            int height = (int)((FrameworkElement)this.Content).ActualHeight;
             bitmapImage.DecodePixelHeight = height;
             bitmapImage.EndInit();
             bitmapImage.Freeze();
-
             image1.Source = bitmapImage;
 
-            _delaySeconds = 5;
+            _delaySeconds = DelaySeconds;
             if (!_isShow)
             {
                 this.Opacity = 1;
@@ -41,7 +40,6 @@ namespace ScreenshotEx
                 this.Top = workArea.Height - this.Height;
 
                 _isShow = true;
-
                 DelayHide();
             }
         }
@@ -53,7 +51,6 @@ namespace ScreenshotEx
                 this.Opacity = 0;
                 this.Left = -10000;
                 this.Top = -10000;
-
                 _isShow = false;
             }
         }
