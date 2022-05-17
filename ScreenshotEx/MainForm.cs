@@ -100,12 +100,20 @@ namespace ScreenshotEx
         {
             if (_settings.OpenApp == 0)
             {
-                Process.Start(new ProcessStartInfo
+                const string PaintPath = "C:\\Windows\\System32\\mspaint.exe";
+                if (File.Exists(PaintPath))
                 {
-                    FileName = @"C:\Windows\System32\mspaint.exe",
-                    Arguments = $"\"{_saveFilePath}\"",
-                    UseShellExecute = true
-                });
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = PaintPath,
+                        Arguments = $"\"{_saveFilePath}\"",
+                        UseShellExecute = true
+                    });
+                }
+                else
+                {
+                    Helper.OpenLink(_saveFilePath);
+                }
             }
 
             _previewWindow.SetHide();
