@@ -79,7 +79,7 @@ namespace ScreenshotEx
 
             if (_settings.IsFirstRun)
             {
-                notifyIcon1.ShowBalloonTip(1000, "", "程序正在后台运行", ToolTipIcon.None);
+                notifyIcon1.ShowBalloonTip(1000, "", "ScreenshotEx 已被最小化到系统托盘。", ToolTipIcon.None);
                 _settings.IsFirstRun = false;
             }
         }
@@ -194,6 +194,7 @@ namespace ScreenshotEx
             {
                 e.Cancel = true;
                 this.Hide();
+                Settings.Save();
             }
         }
 
