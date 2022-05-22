@@ -8,5 +8,9 @@
 ## 下载
 https://github.com/he55/ScreenshotEx/releases/latest
 
+<a href="https://www.microsoft.com/store/apps/9MT9K9LCW707">
+    <img src="https://getbadgecdn.azureedge.net/images/English_L.png" height="104">
+</a>
+
 ## 感谢
 - [WPF 制作高性能的透明背景异形窗口](https://blog.walterlv.com/post/wpf-transparent-window-without-allows-transparency.html)
