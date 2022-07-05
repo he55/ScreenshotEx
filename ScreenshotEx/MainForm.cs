@@ -72,6 +72,9 @@ namespace ScreenshotEx
             checkBox1.Checked = _settings.IsShowPreview;
             checkBox2.Checked = _settings.IsPlaySound;
             checkBox3.Checked = Helper.CheckStartOnBoot();
+            groupBox1.Enabled = !_settings.UseHotkey;
+            radioButton1.Checked = !_settings.UseHotkey;
+            radioButton2.Checked = _settings.UseHotkey;
 
             _hookProc = new HookProc(LowLevelKeyboardProc);
             _hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc, GetModuleHandle(null), 0);
@@ -281,6 +284,12 @@ namespace ScreenshotEx
                 Helper.SetStartOnBoot();
             else
                 Helper.RemoveStartOnBoot();
+        }
+
+        private void radioButton_Click(object sender, EventArgs e)
+        {
+            groupBox1.Enabled = radioButton1.Checked;
+            _settings.UseHotkey = !radioButton1.Checked;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
