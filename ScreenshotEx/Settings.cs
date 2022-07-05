@@ -18,6 +18,7 @@ namespace ScreenshotEx
         public int OpenApp { get; set; }
         public bool IsShowPreview { get; set; } = true;
         public bool IsPlaySound { get; set; } = true;
+        public bool UseHotkey { get; set; }
 
         public static Settings Load()
         {

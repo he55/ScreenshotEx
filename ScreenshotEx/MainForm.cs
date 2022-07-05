@@ -45,6 +45,9 @@ namespace ScreenshotEx
         [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern IntPtr GetModuleHandle([Optional] string lpModuleName);
 
+        [DllImport("User32.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, IntPtr dwExtraInfo = default);
+
         #endregion
 
         const string PrefixName = "截屏";
@@ -95,6 +98,43 @@ namespace ScreenshotEx
         }
 
         #region 私有方法
+
+        void SendHotkey()
+        {
+            const int KEYEVENTF_EXTENDEDKEY = 0x0001;
+            const int KEYEVENTF_KEYUP = 0x0002;
+            const int VK_LWIN = 0x5B;
+            const int VK_SHIFT = 0x10;
+            const int VK_S = 0x53;
+
+            // Simulate a key press
+            keybd_event(VK_LWIN,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | 0,
+                         IntPtr.Zero);
+            keybd_event(VK_SHIFT,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | 0,
+                         IntPtr.Zero);
+            keybd_event(VK_S,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | 0,
+                         IntPtr.Zero);
+
+            // Simulate a key release
+            keybd_event(VK_LWIN,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
+                         IntPtr.Zero);
+            keybd_event(VK_SHIFT,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
+                         IntPtr.Zero);
+            keybd_event(VK_S,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
+                         IntPtr.Zero);
+        }
 
         void OpenImage()
         {
@@ -176,9 +216,17 @@ namespace ScreenshotEx
                 if (lParam.vkCode == VK_SNAPSHOT)
                 {
                     if ((int)wParam == WM_KEYUP || (int)wParam == WM_SYSKEYUP)
-                        SaveImage();
+                    {
+                        if (!_settings.UseHotkey)
+                            SaveImage();
+                        else
+                            SendHotkey();
+                    }
                     else
-                        _previewWindow.SetHide();
+                    {
+                        if (!_settings.UseHotkey)
+                            _previewWindow.SetHide();
+                    }
                 }
             }
             return CallNextHookEx(_hhook, nCode, wParam, ref lParam);
