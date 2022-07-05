@@ -9,7 +9,7 @@
   <Identity
     Name="3739761A1F2AD.ScreenshotEx"
     Publisher="CN=0A119F5D-06A0-412E-AA5D-DA7A0675CBFE"
-    Version="1.1.0.0" />
+    Version="1.2.0.0" />
 
   <Properties>
     <DisplayName>ScreenshotEx</DisplayName>
