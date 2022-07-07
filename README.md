@@ -1,6 +1,8 @@
 # ScreenshotEx
 一个简单易用的 Windows 截屏增强工具
 
+![](Screenshot.png)
+
 ## 功能
 - 自动保存截屏到桌面
 - 点击截屏预览可以编辑截屏
