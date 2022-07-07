@@ -46,7 +46,7 @@ namespace ScreenshotEx
         public static extern IntPtr GetModuleHandle([Optional] string lpModuleName);
 
         [DllImport("User32.dll", SetLastError = false, ExactSpelling = true)]
-        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, IntPtr dwExtraInfo = default);
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, IntPtr dwExtraInfo);
 
         #endregion
 
@@ -102,7 +102,7 @@ namespace ScreenshotEx
 
         #region 私有方法
 
-        void SendHotkey()
+        static void SendHotkey()
         {
             const int KEYEVENTF_EXTENDEDKEY = 0x0001;
             const int KEYEVENTF_KEYUP = 0x0002;
