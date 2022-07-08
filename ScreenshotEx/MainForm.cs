@@ -111,25 +111,25 @@ namespace ScreenshotEx
             const int VK_S = 0x53;
 
             // Simulate a key press
-            keybd_event(VK_LWIN,
-                         0x45,
-                         KEYEVENTF_EXTENDEDKEY | 0,
-                         IntPtr.Zero);
             keybd_event(VK_SHIFT,
                          0x45,
-                         KEYEVENTF_EXTENDEDKEY | 0,
+                         KEYEVENTF_EXTENDEDKEY,
+                         IntPtr.Zero);
+            keybd_event(VK_LWIN,
+                         0x45,
+                         KEYEVENTF_EXTENDEDKEY,
                          IntPtr.Zero);
             keybd_event(VK_S,
                          0x45,
-                         KEYEVENTF_EXTENDEDKEY | 0,
+                         KEYEVENTF_EXTENDEDKEY,
                          IntPtr.Zero);
 
             // Simulate a key release
-            keybd_event(VK_LWIN,
+            keybd_event(VK_SHIFT,
                          0x45,
                          KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
                          IntPtr.Zero);
-            keybd_event(VK_SHIFT,
+            keybd_event(VK_LWIN,
                          0x45,
                          KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
                          IntPtr.Zero);
@@ -214,7 +214,7 @@ namespace ScreenshotEx
 
         IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, ref KBDLLHOOKSTRUCT lParam)
         {
-            if (nCode == HC_ACTION)
+            if (nCode >= HC_ACTION)
             {
                 if (lParam.vkCode == VK_SNAPSHOT)
                 {
@@ -229,6 +229,8 @@ namespace ScreenshotEx
                     {
                         if (!_settings.UseHotkey)
                             _previewWindow.SetHide();
+                        else
+                            return (IntPtr)1;
                     }
                 }
             }
