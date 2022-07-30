@@ -123,7 +123,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(291, 27);
+            this.label2.Location = new System.Drawing.Point(285, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 4;
@@ -137,7 +137,7 @@
             "PNG",
             "JPG",
             "BMP"});
-            this.comboBox1.Location = new System.Drawing.Point(291, 50);
+            this.comboBox1.Location = new System.Drawing.Point(285, 50);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(51, 20);
             this.comboBox1.TabIndex = 5;
@@ -146,7 +146,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(291, 91);
+            this.checkBox1.Location = new System.Drawing.Point(285, 91);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(48, 16);
             this.checkBox1.TabIndex = 6;
@@ -157,7 +157,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(291, 119);
+            this.checkBox2.Location = new System.Drawing.Point(285, 119);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(48, 16);
             this.checkBox2.TabIndex = 7;
@@ -179,7 +179,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(196, 27);
+            this.label3.Location = new System.Drawing.Point(200, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 9;
@@ -192,16 +192,16 @@
             this.comboBox2.Items.AddRange(new object[] {
             "日期",
             "数字"});
-            this.comboBox2.Location = new System.Drawing.Point(196, 50);
+            this.comboBox2.Location = new System.Drawing.Point(200, 50);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(78, 20);
+            this.comboBox2.Size = new System.Drawing.Size(62, 20);
             this.comboBox2.TabIndex = 10;
             this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SelectionChangeCommitted);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(196, 91);
+            this.label4.Location = new System.Drawing.Point(200, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 11;
@@ -213,7 +213,7 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "画图"});
-            this.comboBox3.Location = new System.Drawing.Point(196, 113);
+            this.comboBox3.Location = new System.Drawing.Point(200, 113);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(62, 20);
             this.comboBox3.TabIndex = 12;
@@ -268,9 +268,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(13, 204);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(83, 16);
+            this.radioButton2.Size = new System.Drawing.Size(191, 16);
             this.radioButton2.TabIndex = 14;
-            this.radioButton2.Text = "截屏模式二";
+            this.radioButton2.Text = "映射到 Ctrl+Win+Shift 快捷键";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.Click += new System.EventHandler(this.radioButton_Click);
             // 
@@ -280,10 +280,10 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(13, 13);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(83, 16);
+            this.radioButton1.Size = new System.Drawing.Size(107, 16);
             this.radioButton1.TabIndex = 13;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "截屏模式一";
+            this.radioButton1.Text = "保存截屏到桌面";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.Click += new System.EventHandler(this.radioButton_Click);
             // 
@@ -319,7 +319,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 12);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Version 1.2";
+            this.label6.Text = "Version 1.3";
             // 
             // label5
             // 

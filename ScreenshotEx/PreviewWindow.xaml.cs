@@ -69,7 +69,7 @@ namespace ScreenshotEx
             SetHide();
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void Border_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             OpenImageAction?.Invoke();
         }

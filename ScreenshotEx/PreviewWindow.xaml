@@ -17,7 +17,7 @@
     <Window.Template>
         <ControlTemplate TargetType="Window">
             <Border Padding="15" Background="Transparent">
-                <Border Background="White" CornerRadius="5">
+                <Border Background="White" CornerRadius="5" Padding="3" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="15" Opacity="0.6" ShadowDepth="0" />
                     </Border.Effect>
@@ -26,7 +26,7 @@
             </Border>
         </ControlTemplate>
     </Window.Template>
-    <Grid Margin="3" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+    <Grid>
         <Image x:Name="image1" />
     </Grid>
 </Window>
