@@ -71,7 +71,6 @@ namespace ScreenshotEx
             comboBox3.SelectedIndex = _settings.OpenApp;
             checkBox1.Checked = _settings.IsShowPreview;
             checkBox2.Checked = _settings.IsPlaySound;
-            checkBox3.Checked = Helper.CheckStartOnBoot();
             groupBox1.Enabled = !_settings.UseHotkey;
             radioButton1.Checked = !_settings.UseHotkey;
             radioButton2.Checked = _settings.UseHotkey;
@@ -240,6 +239,11 @@ namespace ScreenshotEx
         #endregion
 
         #region 控件事件
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            checkBox3.Checked = Helper.CheckStartOnBoot();
+        }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
