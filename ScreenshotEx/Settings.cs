@@ -6,7 +6,7 @@ namespace ScreenshotEx
 {
     public class Settings
     {
-        static string settingsFilePath = Helper.GetPathForAppFolder("settings.xml");
+        static string settingsFilePath = Helper.GetPathForUserAppDataFolder("settings.xml");
         static Settings s_settings;
 
         private Settings() { }
