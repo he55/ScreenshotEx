@@ -8,6 +8,7 @@ namespace ScreenshotEx
 {
     public static class Helper
     {
+        const string ProjectName = "ScreenshotEx";
         const string STARTUP_KEY = @"Software\Microsoft\Windows\CurrentVersion\Run";
         static string s_appPath;
 
@@ -24,7 +25,7 @@ namespace ScreenshotEx
         {
             if (s_appPath == null)
             {
-                s_appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Constant.ProjectName);
+                s_appPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProjectName);
                 if (!Directory.Exists(s_appPath))
                 {
                     Directory.CreateDirectory(s_appPath);
@@ -36,7 +37,7 @@ namespace ScreenshotEx
         public static bool CheckStartOnBoot()
         {
             RegistryKey startupKey = Registry.CurrentUser.OpenSubKey(STARTUP_KEY);
-            bool startOnBoot = startupKey.GetValue(Constant.ProjectName) != null;
+            bool startOnBoot = startupKey.GetValue(ProjectName) != null;
             startupKey.Close();
             return startOnBoot;
         }
@@ -44,14 +45,14 @@ namespace ScreenshotEx
         public static void SetStartOnBoot()
         {
             RegistryKey startupKey = Registry.CurrentUser.OpenSubKey(STARTUP_KEY, true);
-            startupKey.SetValue(Constant.ProjectName, $"\"{Application.ExecutablePath}\"");
+            startupKey.SetValue(ProjectName, $"\"{Application.ExecutablePath}\"");
             startupKey.Close();
         }
 
         public static void RemoveStartOnBoot()
         {
             RegistryKey startupKey = Registry.CurrentUser.OpenSubKey(STARTUP_KEY, true);
-            startupKey.DeleteValue(Constant.ProjectName);
+            startupKey.DeleteValue(ProjectName);
             startupKey.Close();
         }
     }

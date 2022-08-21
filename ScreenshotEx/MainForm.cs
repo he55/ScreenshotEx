@@ -13,12 +13,6 @@ namespace ScreenshotEx
     {
         #region PInvoke
 
-        const int HC_ACTION = 0;
-        const int WH_KEYBOARD_LL = 13;
-        const int WM_KEYUP = 0x0101;
-        const int WM_SYSKEYUP = 0x0105;
-        const int VK_SNAPSHOT = 0x2C;
-
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         public struct KBDLLHOOKSTRUCT
         {
@@ -76,6 +70,7 @@ namespace ScreenshotEx
             radioButton2.Checked = _settings.UseHotkey;
 
             _hookProc = new HookProc(LowLevelKeyboardProc);
+            const int WH_KEYBOARD_LL = 13;
             _hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc, GetModuleHandle(null), 0);
             _soundPlayer = new SoundPlayer(Properties.Resources.Screenshot);
             _previewWindow = new PreviewWindow();
@@ -103,11 +98,11 @@ namespace ScreenshotEx
 
         static void SendHotkey()
         {
+            const int VK_SHIFT = 0x10;
+            const int VK_LWIN = 0x5B;
+            const int VK_S = 0x53;
             const int KEYEVENTF_EXTENDEDKEY = 0x0001;
             const int KEYEVENTF_KEYUP = 0x0002;
-            const int VK_LWIN = 0x5B;
-            const int VK_SHIFT = 0x10;
-            const int VK_S = 0x53;
 
             // Simulate a key press
             keybd_event(VK_SHIFT,
@@ -213,6 +208,11 @@ namespace ScreenshotEx
 
         IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, ref KBDLLHOOKSTRUCT lParam)
         {
+            const int HC_ACTION = 0;
+            const int VK_SNAPSHOT = 0x2C;
+            const int WM_KEYUP = 0x0101;
+            const int WM_SYSKEYUP = 0x0105;
+
             if (nCode >= HC_ACTION)
             {
                 if (lParam.vkCode == VK_SNAPSHOT)
