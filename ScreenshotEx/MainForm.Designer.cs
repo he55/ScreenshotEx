@@ -268,9 +268,9 @@
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(13, 204);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(191, 16);
+            this.radioButton2.Size = new System.Drawing.Size(173, 16);
             this.radioButton2.TabIndex = 14;
-            this.radioButton2.Text = "映射到 Ctrl+Win+Shift 快捷键";
+            this.radioButton2.Text = "映射到 Shift+Win+S 快捷键";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.Click += new System.EventHandler(this.radioButton_Click);
             // 
