@@ -6,6 +6,7 @@
 ## 功能
 - 自动保存截屏到桌面
 - 点击截屏预览可以编辑截屏
+- 两种截屏模式可切换
 
 ## 下载
 https://github.com/he55/ScreenshotEx/releases/latest
