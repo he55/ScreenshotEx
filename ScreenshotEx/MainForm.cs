@@ -69,8 +69,8 @@ namespace ScreenshotEx
             radioButton1.Checked = !_settings.UseHotkey;
             radioButton2.Checked = _settings.UseHotkey;
 
-            _hookProc = new HookProc(LowLevelKeyboardProc);
             const int WH_KEYBOARD_LL = 13;
+            _hookProc = new HookProc(LowLevelKeyboardProc);
             _hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc, GetModuleHandle(null), 0);
             _soundPlayer = new SoundPlayer(Properties.Resources.Screenshot);
             _previewWindow = new PreviewWindow();
@@ -158,52 +158,52 @@ namespace ScreenshotEx
 
         void SaveImage()
         {
-            if (Clipboard.ContainsImage())
+            if (!Clipboard.ContainsImage())
+                return;
+
+            if (!Directory.Exists(_settings.SavePath))
+                Directory.CreateDirectory(_settings.SavePath);
+
+            string ext = "png";
+            ImageFormat imageFormat = ImageFormat.Png;
+            switch (_settings.SaveExtension)
             {
-                if (!Directory.Exists(_settings.SavePath))
-                    Directory.CreateDirectory(_settings.SavePath);
-
-                string ext = "png";
-                ImageFormat imageFormat = ImageFormat.Png;
-                switch (_settings.SaveExtension)
-                {
-                    case 0:
-                        imageFormat = ImageFormat.Png;
-                        ext = "png";
-                        break;
-                    case 1:
-                        imageFormat = ImageFormat.Jpeg;
-                        ext = "jpg";
-                        break;
-                    case 2:
-                        imageFormat = ImageFormat.Bmp;
-                        ext = "bmp";
-                        break;
-                }
-
-                if (_settings.SaveName == 0)
-                {
-                    string name = DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss");
-                    _saveFilePath = Path.Combine(_settings.SavePath, $"{PrefixName} {name}.{ext}");
-                }
-                else
-                {
-                    do
-                    {
-                        _saveFilePath = Path.Combine(_settings.SavePath, $"{PrefixName} {_nameIndex}.{ext}");
-                        _nameIndex++;
-                    } while (File.Exists(_saveFilePath));
-                }
-
-                Image image = Clipboard.GetImage();
-                image.Save(_saveFilePath, imageFormat);
-
-                if (_settings.IsPlaySound)
-                    _soundPlayer.Play();
-
-                if (_settings.IsShowPreview)
-                    _previewWindow.SetImage(_saveFilePath);
+                case 0:
+                    imageFormat = ImageFormat.Png;
+                    ext = "png";
+                    break;
+                case 1:
+                    imageFormat = ImageFormat.Jpeg;
+                    ext = "jpg";
+                    break;
+                case 2:
+                    imageFormat = ImageFormat.Bmp;
+                    ext = "bmp";
+                    break;
             }
+
+            if (_settings.SaveName == 0)
+            {
+                string name = DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss");
+                _saveFilePath = Path.Combine(_settings.SavePath, $"{PrefixName} {name}.{ext}");
+            }
+            else
+            {
+                do
+                {
+                    _saveFilePath = Path.Combine(_settings.SavePath, $"{PrefixName} {_nameIndex}.{ext}");
+                    _nameIndex++;
+                } while (File.Exists(_saveFilePath));
+            }
+
+            Image image = Clipboard.GetImage();
+            image.Save(_saveFilePath, imageFormat);
+
+            if (_settings.IsPlaySound)
+                _soundPlayer.Play();
+
+            if (_settings.IsShowPreview)
+                _previewWindow.SetImage(_saveFilePath);
         }
 
         IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, ref KBDLLHOOKSTRUCT lParam)
