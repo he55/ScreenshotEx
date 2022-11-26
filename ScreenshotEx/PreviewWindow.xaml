@@ -9,11 +9,9 @@
         ResizeMode="CanMinimize"
         ShowInTaskbar="False"
         Topmost="True"
+        AllowsTransparency="True"
         WindowStyle="None" Left="-10000" Top="-10000"
         mc:Ignorable="d">
-    <WindowChrome.WindowChrome>
-        <WindowChrome GlassFrameThickness="-1" />
-    </WindowChrome.WindowChrome>
     <Window.Template>
         <ControlTemplate TargetType="Window">
             <Border Padding="15" Background="Transparent">
