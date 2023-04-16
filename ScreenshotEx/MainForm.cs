@@ -66,7 +66,6 @@ namespace ScreenshotEx
             checkBox1.Checked = _settings.IsShowPreview;
             checkBox2.Checked = _settings.IsPlaySound;
             groupBox1.Enabled = !_settings.UseHotkey;
-            radioButton1.Checked = !_settings.UseHotkey;
             radioButton2.Checked = _settings.UseHotkey;
 
             const int WH_KEYBOARD_LL = 13;
