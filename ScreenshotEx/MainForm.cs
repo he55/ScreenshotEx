@@ -302,11 +302,14 @@ namespace ScreenshotEx
             Helper.OpenLink("https://github.com/he55/ScreenshotEx");
         }
 
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            tabControl1.SelectedIndex = 0;
-            this.Show();
-            this.Activate();
+            if (e.Button == MouseButtons.Left)
+            {
+                tabControl1.SelectedIndex = 0;
+                this.Show();
+                this.Activate();
+            }
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
